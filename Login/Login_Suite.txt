@@ -1,0 +1,27 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Variables ***
+@{LoginUserName Id}    id=login_login_username    #Login username field
+@{LoginPassword Id}    id=login_login_password    #Login in password field
+@{LoginButton Id}    id=login_submit    #Login password field
+@{Logout Link}    link=Logout    #Logout link text
+
+*** Test Cases ***
+Valid User Login
+    Open Browser    http://demo.mahara.org/    firefox
+    Maximize Browser Window
+    Wait Until Element Is Visible    @{LoginButton Id}    30s
+    Input Text    @{LoginUserName Id}    student1
+    Input Text    @{LoginPassword Id}    Testing1
+    Click Element    @{LoginButton Id}
+    Page Should Contain Element    @{Logout Link}
+
+Logout
+    [Documentation]    *Test Case* User should be able to log out.
+    ...    Step 1: Click on the logout link after logging in
+    ...    Step 2: Verify that login submit button is displayed.
+    Wait Until Element Is Visible    @{Logout Link}    30s
+    Click Element     @{Logout Link}
+    Wait Until Element Is Visible     @{LoginButton Id}
+    Page Should Contain Element     @{LoginButton Id}
