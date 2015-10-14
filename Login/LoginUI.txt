@@ -1,0 +1,5 @@
+*** Variables ***
+@{LoginUserName Id}    id=login_login_username    # Login username field
+@{LoginPassword Id}    id=login_login_password    # Login in password field
+@{LoginButton Id}    id=login_submit    # Login password field
+@{Logout Link}    link=Logout    # Logout link text
